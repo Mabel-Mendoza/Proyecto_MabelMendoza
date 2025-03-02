@@ -8,8 +8,9 @@ const contador({super.key});
 }
 
 class _contadorState extends State<contador> {
-  @override
   int clickcontador = 0;
+  
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -28,13 +29,38 @@ class _contadorState extends State<contador> {
         ),
       ),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          clickcontador++;
-          setState((){});
-        },
-        child: Icon(Icons.plus_one),
-      ),
+      floatingActionButton: Column(
+  mainAxisAlignment: MainAxisAlignment.end,
+  children: [
+    FloatingActionButton(
+      onPressed: () {
+        clickcontador++;
+        setState(() {});
+      },
+      child: Icon(Icons.plus_one),
+    ),
+    SizedBox(height: 10), 
+
+    FloatingActionButton(
+      onPressed: () {
+        if (clickcontador > 0) {
+          clickcontador--;
+          setState(() {});
+        }
+      },
+      child: Icon(Icons.exposure_minus_1),
+    ),
+    SizedBox(height: 10), 
+
+    FloatingActionButton(
+      onPressed: () {
+        clickcontador = 0;
+        setState(() {});
+      },
+      child: Icon(Icons.refresh),
+    ),
+  ],
+),
 
     );
     }
